@@ -56,6 +56,28 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// Get friends 
+///api/users?userId=64550a829616176d88aa5f94 
+///api/users?userId=64550a829616176d88aa5f94 
+router.get('/friends/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const friends = await Promise.all(
+      user.following.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+    let friendList = [];
+    friends.map((friend) => {
+      const { _id, username, profilePicture } = friend;
+      friendList.push({ _id, username, profilePicture });
+    });
+    res.status(200).json(friendList);
+  } catch (err) {
+      return res.status(500).json(err);
+    }
+});
+
 //Follow user
 router.put('/:id/follow', async (req, res) => {
   if (req.body.userId !== req.params.id) {

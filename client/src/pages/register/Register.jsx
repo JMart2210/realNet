@@ -2,7 +2,7 @@ import "./register.css";
 import { useRef } from "react";
 import { CircularProgress } from "@mui/material"
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Register() {
@@ -66,11 +66,8 @@ export default function Register() {
               ref={passwordAgain}
             />
             <button type="submit" className="loginButton" >Sign Up</button>
-            {/* <button type="submit" className="loginButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" /> : "Sign Up"}</button> */}
-            <button className="loginRegisterButton">
-              Log into Account
-            </button>
           </form>
+          <Link to="/login" className="loginRegisterLink">Already have an account? Log in</Link>
         </div>
       </div>
     </div>

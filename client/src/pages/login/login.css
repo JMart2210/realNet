@@ -34,13 +34,13 @@
 }
 
 .loginBox{
-    height: 300px;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 25px;
 }
 
 .loginInput{
@@ -93,4 +93,11 @@ button:focus{
 }
 .loginRegisterButton:disabled{
     background-color: #307522;
+}
+.loginRegisterLink {
+  width: 60%;
+  border-radius: 10px;
+  border: none;
+  align-self: center;
+  padding: 10px;
 }
