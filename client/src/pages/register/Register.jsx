@@ -6,29 +6,35 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Register() {
+  // Initialize references for form inputs
   const email = useRef();
   const password = useRef();
   const username = useRef();
   const passwordAgain = useRef();
+  // Initialize the useNavigate hook for redirecting user after successful registration
   const navigate = useNavigate();
 
   const handleClick = async (e) => {
     e.preventDefault();
+    // Check if the password and password confirmation match
     if (passwordAgain.current.value !== password.current.value) {
       passwordAgain.current.setCustomValidity("Passwords don't match!");
     } else {
-        const user = {
-          username: username.current.value,
-          email: email.current.value,
-          password: password.current.value,
-        };
-        try {
-          await axios.post("/auth/signup", user);
-          navigate("/login");
-        } catch (err) {
-          console.log(err);
-        }
+      // If they match, create a user object
+      const user = {
+        username: username.current.value,
+        email: email.current.value,
+        password: password.current.value,
+      };
+      // Try to send a post request to the server with the new user's data
+      try {
+        await axios.post("/auth/signup", user);
+        // If successful, navigate the user to the login page
+        navigate("/login");
+      } catch (err) {
+        console.log(err);
       }
+    }
   };
   return (
     <div className="login">
