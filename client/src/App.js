@@ -3,6 +3,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
+import Messenger from "./pages/messenger/Messenger";
 
 // import the necessary components from react-router-dom to handle routing in our app
 import {
@@ -54,6 +55,12 @@ function App() {
           element={user ? 
           <Navigate to="/" /> : 
           <Register />}
+        />
+        <Route
+          path="/messenger"
+          element={!user ? 
+          <Navigate to="/" /> : 
+          <Messenger />}
         />
         
         {/* // This route is for the "/profile/:username" path. It renders the Profile component. ":username" is a URL parameter, and its value can be accessed in the Profile component */}
